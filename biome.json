@@ -1,0 +1,30 @@
+{
+     "": "https://biomejs.dev/schemas/2.4.13/schema.json",
+     "linter": {
+          "enabled": true,
+          "rules": {
+               "recommended": true,
+               "correctness": {
+                    "noUnusedVariables": "off",
+                    "noUnusedImports": "off",
+                    "noUnusedFunctionParameters": "off"
+               }
+          }
+     },
+     "formatter": {
+          "enabled": true
+     },
+     "javascript": {
+          "parser": {
+               "unsafeParameterDecoratorsEnabled": false
+          }
+     },
+     "overrides": [
+          {
+               "includes": ["**/*.js"],
+               "javascript": {
+                    "globals": []
+               }
+          }
+     ]
+}
