@@ -18,6 +18,7 @@ const app = express();
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("/static"));
 app.use("/signup", signup);
 app.use("/login", login);
 
@@ -27,7 +28,7 @@ app.get("/", async (req, res) => {
   if (!token) res.redirect("/login");
 
   const { data, error } = await supabase.auth.getUser(token);
-  res.send(data);
+  res.sendFile(path.join(__dirname, "/static/home.html"));
 });
 
 export default app;
