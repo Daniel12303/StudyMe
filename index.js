@@ -18,7 +18,7 @@ const app = express();
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("static"));
+app.use(express.static(path.join(__dirname, "/static")));
 app.use("/signup", signup);
 app.use("/login", login);
 
