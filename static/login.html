@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body id="login">
     <div id="text_side">
@@ -25,14 +25,19 @@
         <form action="/login/credentials" method="post">
           <h1>Sign In!</h1>
           <label for="">Email</label>
-          <input type="text" name="username" />
+          <input type="text" name="username" required />
           <label for="">Password</label>
-          <input type="text" name="password" />
-          <a href="signup.html">Already Have an Account?</a>
+          <input type="password" minlength="6" name="password" required />
+
+          <a href="/signup">No Account Yet?</a>
+
+          <p id="error_message">Err: Account already created!</p>
           <input type="submit" />
         </form>
       </div>
       <div id="side_card"></div>
     </div>
+
+    <script src="/src/error.js"></script>
   </body>
 </html>

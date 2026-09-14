@@ -20,6 +20,10 @@ router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../static/signup.html"));
 });
 
+router.get("/:error", (req, res) => {
+  res.sendFile(path.join(__dirname, "../static/signup.html"));
+});
+
 router.post("/credentials", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -29,7 +33,9 @@ router.post("/credentials", async (req, res) => {
     password: password,
   });
 
-  if (error) console.log(error.message);
+  if (error) {
+    res.redirect(`/signup/${error.message}`);
+  }
 
   res.redirect("/login");
 });

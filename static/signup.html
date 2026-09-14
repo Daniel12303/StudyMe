@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body id="signup">
     <div id="sign_card">
@@ -13,11 +13,15 @@
         <form action="/signup/credentials" method="post">
           <h1>Sign Up!</h1>
           <label for="">Email</label>
-          <input type="text" name="username" />
-          <label for="">Password</label>
-          <input type="text" name="password" />
+          <input type="text" name="username" required />
 
-          <a href="login.html">No account?</a>
+          <label for="">Password</label>
+          <input type="password" minlength="6" name="password" required />
+
+          <a href="/login">Already Have an Account?</a>
+
+          <p id="error_message">Err: Account already created!</p>
+
           <input type="submit" />
         </form>
       </div>
@@ -27,13 +31,15 @@
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore,
         fugit consectetur soluta dolorem esse maiores. Accusantium,
-        reprehenderit! Laboriosam sequi consequuntur perferendis unde assumenda,
-        facere commodi enim nemo, adipisci fugit dignissimos. Lorem ipsum dolor,
-        sit amet consectetur adipisicing elit. Inventore, fugit consectetur
-        soluta dolorem esse maiores. Accusantium, reprehenderit! Laboriosam
-        sequi consequuntur perferendis unde assumenda, facere commodi enim nemo,
-        adipisci fugit dignissimos.
+        reprehenderit! Laboriosam sequi consequ untur perferendis unde
+        assumenda, facere commodi enim nemo, adipisci fugit dignissimos. Lorem
+        ipsum dolor, sit amet consectetur adipisicing elit. Inventore, fugit
+        consectetur soluta dolorem esse maiores. Accusantium, reprehenderit!
+        Laboriosam sequi consequuntur perferendis unde assumenda, facere commodi
+        enim nemo, adipisci fugit dignissimos.
       </p>
     </div>
+
+    <script src="/src/error.js"></script>
   </body>
 </html>

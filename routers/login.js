@@ -22,6 +22,10 @@ router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../static/login.html"));
 });
 
+router.get("/:error", (req, res) => {
+  res.sendFile(path.join(__dirname, "../static/login.html"));
+});
+
 router.post("/credentials", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -31,8 +35,9 @@ router.post("/credentials", async (req, res) => {
     password: password,
   });
 
-  if (error) console.log(error.message);
-  else {
+  if (error) {
+    res.redirect(`/login/${error.message}`);
+  } else {
     res.cookie("access_token", data.session.access_token, { httpOnly: true });
   }
 

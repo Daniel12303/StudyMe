@@ -11,6 +11,7 @@
     ></script>
   </head>
   <body>
+    <div id="background" onclick="hide()"></div>
     <div id="header">
       <h1>Study With Me!</h1>
       <h3 id="current_page">Dashboard</h3>
@@ -28,7 +29,7 @@
 
           <input type="text" id="searchBar"></input>
 
-          <button class="icons">
+          <button class="icons" onclick="createCard()">
             <i class="fa-solid fa-plus fa-lg" style="color: #0e2d63"></i>
           </button>
 
@@ -52,64 +53,15 @@
           </button>
         </div>
         <div id="dashboard_main">
-          <div class="cells">
+
+          <div class="cells" id="new_cell">
             <div class="cell_header"></div>
             <div class="cell_body">
-              <h3>Contemporary Philippine Arts From the Region</h3>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore
-                beatae impedit illo quos nemo ab incidunt blanditiis dolorum?
-              </p>
-            </div>
-          </div>
-          <div class="cells">
-            <div class="cell_header"></div>
-            <div class="cell_body">
-              <h3>Contemporary Philippine Arts From the Region</h3>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore
-                beatae impedit illo quos nemo ab incidunt blanditiis dolorum?
-              </p>
-            </div>
-          </div>
-          <div class="cells">
-            <div class="cell_header"></div>
-            <div class="cell_body">
-              <h3>Contemporary Philippine Arts From the Region</h3>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore
-                beatae impedit illo quos nemo ab incidunt blanditiis dolorum?
-              </p>
-            </div>
-          </div>
-          <div class="cells">
-            <div class="cell_header"></div>
-            <div class="cell_body">
-              <h3>Contemporary Philippine Arts From the Region</h3>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore
-                beatae impedit illo quos nemo ab incidunt blanditiis dolorum?
-              </p>
-            </div>
-          </div>
-          <div class="cells">
-            <div class="cell_header"></div>
-            <div class="cell_body">
-              <h3>Contemporary Philippine Arts From the Region</h3>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore
-                beatae impedit illo quos nemo ab incidunt blanditiis dolorum?
-              </p>
-            </div>
-          </div>
-          <div class="cells">
-            <div class="cell_header"></div>
-            <div class="cell_body">
-              <h3>Contemporary Philippine Arts From the Region</h3>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore
-                beatae impedit illo quos nemo ab incidunt blanditiis dolorum?
-              </p>
+              <form action="/createNew" method="post">
+                <textarea name="subject_title" id="title" placeholder="Enter the Subject Title"></textarea>
+                <textarea name="subject_description" id="desc" placeholder="Enter the Subject Description"></textarea>
+                <input type="submit">
+              </form>
             </div>
           </div>
         </div>
@@ -122,5 +74,7 @@
         </ul>
       </div>
     </main>
+
+    <script src="src/home.js"></script>
   </body>
 </html>
