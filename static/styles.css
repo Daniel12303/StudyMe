@@ -292,6 +292,13 @@ main {
   margin-bottom: 5%;
 }
 
+#main_card form input[type="text"] {
+  font-family: var(--main-font);
+  color: #502a27;
+
+  padding-left: 3%;
+}
+
 #main_card a {
   font-family: var(--secondary-font);
   color: #502a27;
