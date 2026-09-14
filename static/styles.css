@@ -19,6 +19,8 @@ html {
   overflow: none;
 }
 
+/*HOME PAGE*/
+
 body {
   background-color: #f9eceb;
 
@@ -207,4 +209,149 @@ main {
 #sidebar ul li {
   font-family: var(--secondary-font);
   font-size: 0.9rem;
+}
+
+/*SIGN-UP PAGE*/
+
+#signup,
+#login {
+  display: flex;
+  flex-direction: row;
+
+  padding: 0 4%;
+  padding-top: 6%;
+}
+
+#sign_card {
+  width: 50%;
+  height: 85%;
+
+  background: #fbf9f9;
+
+  border-top-right-radius: 32px;
+
+  display: flex;
+
+  filter: drop-shadow(0 5px 4px rgba(0, 0, 0, 0.2));
+}
+
+#side_card {
+  height: 100%;
+  width: 45%;
+
+  border-top-right-radius: 32px;
+
+  background-color: #896a6a;
+}
+
+#main_card {
+  height: 100%;
+  width: 55%;
+
+  padding-left: 5%;
+  padding-right: 8%;
+  padding-top: 8%;
+}
+
+#main_card form {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+}
+
+#main_card form h1 {
+  font-family: var(--main-font);
+  font-size: 1.6rem;
+  color: #502a27;
+
+  margin-bottom: 9%;
+  filter: none;
+}
+
+#main_card form label {
+  font-family: var(--secondary-font);
+  font-size: 1rem;
+
+  color: #502a27;
+}
+
+#main_card form input {
+  all: unset;
+
+  width: 100%;
+  height: 4%;
+
+  border-radius: 6px;
+  border: 1px solid #896a6a;
+
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+
+#main_card a {
+  font-family: var(--secondary-font);
+  color: #502a27;
+  padding-top: 1%;
+}
+
+#main_card form input[type="submit"] {
+  height: 6%;
+
+  background-color: #e7cdcb;
+
+  font-family: var(--main-font);
+  color: #352826;
+
+  display: flex;
+  text-align: center;
+
+  position: absolute;
+  bottom: 13%;
+}
+
+#text_side {
+  width: 50%;
+  padding-left: 6%;
+  padding-top: 1%;
+}
+
+#text_side h1 {
+  font-size: 1.9rem;
+  color: #502a27;
+}
+
+#text_side p {
+  font-family: var(--secondary-font);
+  color: #502a27;
+
+  text-align: justify;
+}
+
+/*SIGN-IN*/
+#login {
+  justify-content: space-between;
+}
+
+#login #text_side {
+  padding-left: 0;
+  width: 45%;
+}
+
+#login #main_card {
+  border: 0;
+}
+
+#login #sign_card {
+  width: 50%;
+  border-radius: 0;
+  border-top-left-radius: 32px;
+}
+
+#login #side_card {
+  border-radius: 0;
+  border-top-left-radius: 32px;
 }

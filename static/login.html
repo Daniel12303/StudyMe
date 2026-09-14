@@ -4,18 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <form action="/login/credentials" method="post">
-      <label for="">Username</label>
-      <br />
-      <input type="text" name="username" />
-      <br />
-      <label for="">Password</label>
-      <br />
-      <input type="text" name="password" />
-      <br />
-      <input type="submit" />
-    </form>
+  <body id="login">
+    <div id="text_side">
+      <h1>Study With Me!</h1>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore,
+        fugit consectetur soluta dolorem esse maiores. Accusantium,
+        reprehenderit! Laboriosam sequi consequuntur perferendis unde assumenda,
+        facere commodi enim nemo, adipisci fugit dignissimos. Lorem ipsum dolor,
+        sit amet consectetur adipisicing elit. Inventore, fugit consectetur
+        soluta dolorem esse maiores. Accusantium, reprehenderit! Laboriosam
+        sequi consequuntur perferendis unde assumenda, facere commodi enim nemo,
+        adipisci fugit dignissimos.
+      </p>
+    </div>
+    <div id="sign_card">
+      <div id="main_card">
+        <form action="/login/credentials" method="post">
+          <h1>Sign In!</h1>
+          <label for="">Email</label>
+          <input type="text" name="username" />
+          <label for="">Password</label>
+          <input type="text" name="password" />
+          <a href="signup.html">Already Have an Account?</a>
+          <input type="submit" />
+        </form>
+      </div>
+      <div id="side_card"></div>
+    </div>
   </body>
 </html>
