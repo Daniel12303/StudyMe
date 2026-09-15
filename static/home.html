@@ -39,13 +39,13 @@
               style="color: rgb(88, 101, 51)"
             ></i>
           </button>
-          <button class="icons">
+          <button class="icons" onclick="deleteCard()">
             <i
               class="fa-solid fa-trash-can fa-lg"
               style="color: rgb(165, 58, 58)"
             ></i>
           </button>
-          <button class="icons">
+          <button class="icons" onclick="select()">
             <i
               class="fa-regular fa-square fa-lg"
               style="color: rgb(109, 85, 85)"
@@ -53,12 +53,11 @@
           </button>
         </div>
         <div id="dashboard_main">
-
           <div class="cells" id="new_cell">
             <div class="cell_header"></div>
             <div class="cell_body">
               <form action="/createNew" method="post">
-                <textarea name="subject_title" id="title" placeholder="Enter the Subject Title"></textarea>
+                <textarea name="subject_title" id="title" placeholder="Enter the Subject Title" required></textarea>
                 <textarea name="subject_description" id="desc" placeholder="Enter the Subject Description"></textarea>
                 <input type="submit">
               </form>

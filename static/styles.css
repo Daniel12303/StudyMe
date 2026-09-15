@@ -255,6 +255,23 @@ main {
 
   background-color: #896a6a;
   border-radius: 32px 32px 0 0;
+
+  position: relative;
+}
+
+#check {
+  position: absolute;
+  aspect-ratio: 1/1;
+  width: 6%;
+
+  top: 15%;
+  right: 7%;
+
+  border-radius: 16px;
+
+  accent-color: #a53a3a;
+
+  display: none;
 }
 
 .cell_body {

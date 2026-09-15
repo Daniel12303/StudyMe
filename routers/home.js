@@ -40,7 +40,7 @@ router.get("/error/:error", async (req, res) => {
   const { data, error } = await supabase.auth.getUser(token);
 
   if (error) {
-    res.clearCookie("access_token");
+    home.res.clearCookie("access_token");
     res.redirect("/login");
   }
 
@@ -117,6 +117,29 @@ router.post("/createNew", async (req, res) => {
   }
 
   res.redirect("/");
+});
+
+router.post("/deleteSubject", async (req, res) => {
+  res.send({ status: "OK" });
+  let subject_list = req.body.subjects.split(",");
+
+  subject_list.forEach((subject, index, arr) => {
+    arr[index] = subject.replaceAll("%2C", ",");
+  });
+
+  const token = req.cookies.access_token;
+  const token_response = await supabase.auth.getUser(token);
+
+  if (token_response.error) console.log(token_response.error.message);
+
+  const uid = token_response.data.user.id;
+
+  const response = await supabase.from("subjects").select().eq("uid", uid);
+  let all_subjects = response.data[0]["subjects"]["subjects"];
+
+  all_subjects.forEach((subject) => {
+    const title = subject.subject_name;
+  });
 });
 
 export { router as home };
