@@ -185,7 +185,7 @@ main {
   box-sizing: border-box;
 }
 
-#dashboard {
+.dashboard {
   height: 100%;
   width: 77%;
 
@@ -206,6 +206,8 @@ main {
   all: unset;
   margin-left: 3px;
   margin-right: 3px;
+
+  cursor: pointer;
 }
 
 #searchBar {
@@ -495,4 +497,127 @@ main {
 #login #side_card {
   border-radius: 0;
   border-top-left-radius: 32px;
+}
+
+#subj_overview {
+  gap: 1%;
+  height: 85%;
+}
+
+.dashboard.subj {
+  background-color: #fefbfb;
+  height: 100%;
+  width: 62%;
+
+  border-radius: 16px;
+
+  padding: 2% 3%;
+
+  box-sizing: border-box;
+}
+
+#content {
+  width: 100%;
+  height: 100%;
+}
+
+#content h1 {
+  font-family: var(--secondary-font);
+  color: #502a27;
+
+  font-size: 1.6em;
+}
+
+#content ul {
+  outline: 0;
+}
+
+#content li {
+  font-family: var(--secondary-font);
+  font-size: 0.9em;
+}
+
+#content h3 {
+  margin-top: 8%;
+  margin-bottom: 0;
+
+  font-family: var(--secondary-font);
+  font-size: 1em;
+  font-weight: 600;
+  color: #502a27;
+}
+
+#content p {
+  margin: 0;
+  font-family: var(--secondary-font);
+  font-size: 0.9em;
+  margin-bottom: 2%;
+
+  outline: 0;
+}
+
+#content a {
+  font-family: var(--secondary-font);
+  font-size: 0.9em;
+}
+
+#clock {
+  height: 100%;
+  width: 38%;
+
+  background-color: #e7cdcb;
+  border-radius: 16px;
+
+  padding: 1.2%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#clock_module {
+  width: 100%;
+  height: 60%;
+}
+
+#control {
+  width: 100%;
+  height: 40%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#control h2 {
+  font-family: var(--secondary-font);
+  font-size: 2em;
+  font-weight: 500;
+  color: #502a27;
+
+  margin-bottom: 3%;
+  outline: 0;
+}
+
+#control_panel {
+  display: flex;
+  width: 100%;
+  height: 20%;
+
+  justify-content: center;
+
+  gap: 3%;
+}
+
+#control_panel button {
+  all: unset;
+
+  border: 2px solid black;
+  border-radius: 32px;
+
+  height: 60%;
+  padding: 0 3%;
+
+  font-family: var(--secondary-font);
+  font-size: 0.9em;
 }

@@ -67,7 +67,7 @@ router.get("/getSubjects", async (req, res) => {
 
 router.post("/createNew", async (req, res) => {
   const body = req.body;
-  const title = req.body.subject_title;
+  let title = req.body.subject_title;
   const description = req.body.subject_description;
 
   const token = req.cookies.access_token;
@@ -89,8 +89,6 @@ router.post("/createNew", async (req, res) => {
       ],
     };
 
-    const subject_json = JSON.stringify(subject_object);
-
     const { error } = await supabase
       .from("subjects")
       .insert({ uid: uid, subjects: subject_object });
@@ -100,6 +98,18 @@ router.post("/createNew", async (req, res) => {
     let subject_list = response.data[0]["subjects"];
 
     subject_list.subjects.forEach((subject) => {
+      let sub_subject = subject.subject_name;
+
+      sub_subject = sub_subject.replaceAll("\r", "");
+      sub_subject = sub_subject.replaceAll("\n", "");
+      sub_subject = sub_subject.replaceAll("\t", "");
+
+      title = title.replaceAll("\r", "");
+      title = title.replaceAll("\n", "");
+      title = title.replaceAll("\t", "");
+
+      console.log(subject);
+
       if (title == subject.subject_name)
         res.redirect("/error/Name%20Already%20Taken");
     });
@@ -120,13 +130,6 @@ router.post("/createNew", async (req, res) => {
 });
 
 router.post("/deleteSubject", async (req, res) => {
-  res.send({ status: "OK" });
-  let subject_list = req.body.subjects.split(",");
-
-  subject_list.forEach((subject, index, arr) => {
-    arr[index] = subject.replaceAll("%2C", ",");
-  });
-
   const token = req.cookies.access_token;
   const token_response = await supabase.auth.getUser(token);
 
@@ -134,12 +137,41 @@ router.post("/deleteSubject", async (req, res) => {
 
   const uid = token_response.data.user.id;
 
+  let subject_list = req.body.subjects.split(",");
+
+  subject_list.forEach((subject, index, arr) => {
+    arr[index] = subject.replaceAll("%2C", ",");
+  });
+
   const response = await supabase.from("subjects").select().eq("uid", uid);
   let all_subjects = response.data[0]["subjects"]["subjects"];
 
-  all_subjects.forEach((subject) => {
-    const title = subject.subject_name;
+  if (all_subjects.length == subject_list.length) {
+    const response = await supabase.from("subjects").delete().eq("uid", uid);
+  }
+
+  all_subjects = all_subjects.filter((subject) => {
+    for (let i = 0; i < subject_list.length; i++) {
+      const title = subject_list[i];
+      if (subject.subject_name == title) return false;
+    }
+    return true;
   });
+
+  const subject_object = {
+    subjects: all_subjects,
+  };
+
+  console.log(subject_object);
+
+  const { error } = await supabase
+    .from("subjects")
+    .update({ subjects: subject_object })
+    .eq("uid", uid);
+
+  if (error) console.log(error.message);
+
+  res.send({ status: "OK" });
 });
 
 export { router as home };

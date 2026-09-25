@@ -3,6 +3,16 @@ const new_cell = document.getElementById("new_cell");
 const dashboard_main = document.getElementById("dashboard_main");
 let checkbox;
 
+checkError();
+
+function checkError() {
+  const url = window.location.href.split("/");
+  if (url.pop() == "Name%20Already%20Taken") {
+    window.alert("Card with name already exists");
+    window.location.href = "/";
+  }
+}
+
 function select() {
   checkbox.forEach((box) => {
     if (box.style.display == "none") {
@@ -44,6 +54,7 @@ async function deleteCard() {
           subjects: subjectList,
         }),
       });
+      window.location.href = "/";
     } catch (error) {
       console.log(error.message);
     }
