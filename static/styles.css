@@ -621,3 +621,18 @@ main {
   font-family: var(--secondary-font);
   font-size: 0.9em;
 }
+
+#control_panel button:hover {
+  background-color: #502a27;
+  color: #f9eceb;
+  transition: 0.4s;
+}
+
+#control_panel button:focus {
+  background-color: #502a27;
+  color: #f9eceb;
+}
+
+#timeBox {
+  display: flex;
+}

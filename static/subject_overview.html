@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="/styles.css" />
     <script
       src="https://kit.fontawesome.com/9762725b37.js"
@@ -20,21 +21,10 @@
     <main id="subj_overview">
       <div class="dashboard subj">
         <div id="content">
-          <h1>CONTEMPORARY PHILIPPINE ARTS FROM THE REGIONS</h1>
-          <ul contenteditable="true">
-            <li>Contemporary Philippine Arts from the Regions</li>
-            <li>Pagbasa at Pagsuri ng mga Paksa Tungo sa Pananaliksik</li>
-            <li>Entrepreneurship</li>
-          </ul>
+          <h1 id="subject_title"></h1>
+          <ul id="studyList" contenteditable="true"></ul>
           <h3>Note to self</h3>
-          <p contenteditable="true">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-            totam dolore reprehenderit qui aliquid optio fuga hic non, at
-            doloribus ipsam eaque laborum quibusdam nisi eos explicabo.
-            Laboriosam labore corporis voluptatibus cumque! Sapiente praesentium
-            minus sequi tempore est recusandae adipisci vel eligendi? Rerum,
-            dolorem natus. Eos ullam architecto corrupti porro?
-          </p>
+          <p id="noteSelf" contenteditable="true"></p>
 
           <a href="">Link to Flashcards</a>
           <a href="">Link to Document</a>
@@ -43,16 +33,23 @@
       <div id="clock">
         <div id="clock_module"></div>
         <div id="control">
-          <h2 contenteditable="true">00:00:00</h2>
-          <div id="control_panel">
-            <button class="button_stop">STOP</button>
-            <button id="button_restart">RESTART</button>
-            <button id="button_start">START</button>
+          <div id="timeBox">
+            <h2 contenteditable="true" id="hour">00</h2>
+            <h2>:</h2>
+            <h2 contenteditable="true" id="minute">00</h2>
+            <h2>:</h2>
+            <h2 contenteditable="true" id="second">00</h2>
           </div>
+          <div id="control_panel">
+            <button id="button_start" onclick="start()">START</button>
+            <button id="button_stop" onclick="stop()">STOP</button>
+            <button id="button_restart" onclick="restart()">RESTART</button>
+          </div>
+          <audio src="alarm_tone.mp3" type="audio/mpeg" id="alarm_tone"></audio>
         </div>
       </div>
     </main>
 
-    <script src="/src/home.js"></script>
+    <script src="/src/subj_overview.js"></script>
   </body>
 </html>

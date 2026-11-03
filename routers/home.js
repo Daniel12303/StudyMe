@@ -1,177 +1,210 @@
-import express from "express";
-import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
-import bodyParser from "body-parser";
-import path from "path";
+import express from 'express'
+import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser'
+import bodyParser from 'body-parser'
+import path from 'path'
 
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from '@supabase/supabase-js'
 
-const router = express.Router();
+const router = express.Router()
 
-const database_key = process.env.DATABASE_KEY;
-const project_url = process.env.DATABASE_URL;
-const supabase = createClient(project_url, database_key);
-const __dirname = import.meta.dirname;
+const database_key = process.env.DATABASE_KEY
+const project_url = process.env.DATABASE_URL
+const supabase = createClient(project_url, database_key)
+const __dirname = import.meta.dirname
 
-router.use(cookieParser());
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(express.static(path.join(__dirname, "../static")));
+router.use(cookieParser())
+router.use(bodyParser.urlencoded({ extended: true }))
+router.use(express.static(path.join(__dirname, '../static')))
 
-router.get("/", async (req, res) => {
-  const token = req.cookies.access_token;
+router.get('/', async (req, res) => {
+     const token = req.cookies.access_token
 
-  if (!token) res.redirect("/login");
+     if (!token) res.redirect('/login')
 
-  const { data, error } = await supabase.auth.getUser(token);
+     const { data, error } = await supabase.auth.getUser(token)
 
-  if (error) {
-    res.clearCookie("access_token");
-    res.redirect("/login");
-  }
+     if (error) {
+          res.clearCookie('access_token')
+          res.redirect('/login')
+     }
 
-  res.sendFile(path.join(__dirname, "../static/home.html"));
-});
+     res.sendFile(path.join(__dirname, '../static/home.html'))
+})
 
-router.get("/error/:error", async (req, res) => {
-  const token = req.cookies.access_token;
+router.get('/error/:error', async (req, res) => {
+     const token = req.cookies.access_token
 
-  if (!token) res.redirect("/login");
+     if (!token) res.redirect('/login')
 
-  const { data, error } = await supabase.auth.getUser(token);
+     const { data, error } = await supabase.auth.getUser(token)
 
-  if (error) {
-    home.res.clearCookie("access_token");
-    res.redirect("/login");
-  }
+     if (error) {
+          home.res.clearCookie('access_token')
+          res.redirect('/login')
+     }
 
-  res.sendFile(path.join(__dirname, "../static/home.html"));
-});
+     res.sendFile(path.join(__dirname, '../static/home.html'))
+})
 
-router.get("/getSubjects", async (req, res) => {
-  const token = req.cookies.access_token;
-  const response = await supabase.auth.getUser(token);
+router.get('/getSubjects', async (req, res) => {
+     const token = req.cookies.access_token
+     const response = await supabase.auth.getUser(token)
 
-  if (response.error) console.log(response.error.message);
+     if (response.error) console.log(response.error.message)
 
-  const uid = response.data.user.id;
+     const uid = response.data.user.id
 
-  const { data, error } = await supabase
-    .from("subjects")
-    .select()
-    .eq("uid", uid);
+     const { data, error } = await supabase
+          .from('subjects')
+          .select()
+          .eq('uid', uid)
 
-  if (error) console.log(error.message);
+     if (error) console.log(error.message)
 
-  res.send(data[0].subjects);
-});
+     res.send(data[0].subjects)
+})
 
-router.post("/createNew", async (req, res) => {
-  const body = req.body;
-  let title = req.body.subject_title;
-  const description = req.body.subject_description;
+router.post('/createNew', async (req, res) => {
+     const body = req.body
+     let title = req.body.subject_title
+     const description = req.body.subject_description
 
-  const token = req.cookies.access_token;
-  const { data, error } = await supabase.auth.getUser(token);
+     const token = req.cookies.access_token
+     const { data, error } = await supabase.auth.getUser(token)
 
-  const uid = data.user.id;
+     const uid = data.user.id
 
-  const response = await supabase.from("subjects").select().eq("uid", uid);
+     const response = await supabase.from('subjects').select().eq('uid', uid)
 
-  if (response.error) console.log(response.error.message);
+     if (response.error) console.log(response.error.message)
 
-  if (response.data.length == 0) {
-    const subject_object = {
-      subjects: [
-        {
-          subject_name: title,
-          description: description,
-        },
-      ],
-    };
+     if (response.data.length == 0) {
+          const subject_object = {
+               subjects: [
+                    {
+                         subject_name: title,
+                         description: description
+                    }
+               ]
+          }
 
-    const { error } = await supabase
-      .from("subjects")
-      .insert({ uid: uid, subjects: subject_object });
+          const { error } = await supabase
+               .from('subjects')
+               .insert({ uid: uid, subjects: subject_object })
 
-    if (error) console.log(error.message);
-  } else {
-    let subject_list = response.data[0]["subjects"];
+          if (error) console.log(error.message)
+     } else {
+          let subject_list = response.data[0]['subjects']
 
-    subject_list.subjects.forEach((subject) => {
-      let sub_subject = subject.subject_name;
+          subject_list.subjects.forEach(subject => {
+               let sub_subject = subject.subject_name
 
-      sub_subject = sub_subject.replaceAll("\r", "");
-      sub_subject = sub_subject.replaceAll("\n", "");
-      sub_subject = sub_subject.replaceAll("\t", "");
+               sub_subject = sub_subject.replaceAll('\r', '')
+               sub_subject = sub_subject.replaceAll('\n', '')
+               sub_subject = sub_subject.replaceAll('\t', '')
 
-      title = title.replaceAll("\r", "");
-      title = title.replaceAll("\n", "");
-      title = title.replaceAll("\t", "");
+               title = title.replaceAll('\r', '')
+               title = title.replaceAll('\n', '')
+               title = title.replaceAll('\t', '')
 
-      console.log(subject);
+               console.log(subject)
 
-      if (title == subject.subject_name)
-        res.redirect("/error/Name%20Already%20Taken");
-    });
+               if (title == subject.subject_name)
+                    res.redirect('/error/Name%20Already%20Taken')
+          })
 
-    const new_subject = {
-      subject_name: title,
-      description: description,
-    };
+          const new_subject = {
+               subject_name: title,
+               description: description
+          }
 
-    subject_list.subjects.push(new_subject);
-    const { error } = await supabase
-      .from("subjects")
-      .update({ subjects: subject_list })
-      .eq("uid", uid);
-  }
+          subject_list.subjects.push(new_subject)
+          const { error } = await supabase
+               .from('subjects')
+               .update({ subjects: subject_list })
+               .eq('uid', uid)
+     }
 
-  res.redirect("/");
-});
+     res.redirect('/')
+})
 
-router.post("/deleteSubject", async (req, res) => {
-  const token = req.cookies.access_token;
-  const token_response = await supabase.auth.getUser(token);
+router.post('/deleteSubject', async (req, res) => {
+     const token = req.cookies.access_token
+     const token_response = await supabase.auth.getUser(token)
 
-  if (token_response.error) console.log(token_response.error.message);
+     if (token_response.error) console.log(token_response.error.message)
 
-  const uid = token_response.data.user.id;
+     const uid = token_response.data.user.id
 
-  let subject_list = req.body.subjects.split(",");
+     let subject_list = req.body.subjects.split(',')
 
-  subject_list.forEach((subject, index, arr) => {
-    arr[index] = subject.replaceAll("%2C", ",");
-  });
+     subject_list.forEach((subject, index, arr) => {
+          arr[index] = subject.replaceAll('%2C', ',')
+     })
 
-  const response = await supabase.from("subjects").select().eq("uid", uid);
-  let all_subjects = response.data[0]["subjects"]["subjects"];
+     const response = await supabase.from('subjects').select().eq('uid', uid)
+     let all_subjects = response.data[0]['subjects']['subjects']
 
-  if (all_subjects.length == subject_list.length) {
-    const response = await supabase.from("subjects").delete().eq("uid", uid);
-  }
+     if (all_subjects.length == subject_list.length) {
+          const response = await supabase
+               .from('subjects')
+               .delete()
+               .eq('uid', uid)
+     }
 
-  all_subjects = all_subjects.filter((subject) => {
-    for (let i = 0; i < subject_list.length; i++) {
-      const title = subject_list[i];
-      if (subject.subject_name == title) return false;
-    }
-    return true;
-  });
+     all_subjects = all_subjects.filter(subject => {
+          for (let i = 0; i < subject_list.length; i++) {
+               const title = subject_list[i]
+               if (subject.subject_name == title) return false
+          }
+          return true
+     })
 
-  const subject_object = {
-    subjects: all_subjects,
-  };
+     const subject_object = {
+          subjects: all_subjects
+     }
 
-  console.log(subject_object);
+     console.log(subject_object)
 
-  const { error } = await supabase
-    .from("subjects")
-    .update({ subjects: subject_object })
-    .eq("uid", uid);
+     const { error } = await supabase
+          .from('subjects')
+          .update({ subjects: subject_object })
+          .eq('uid', uid)
 
-  if (error) console.log(error.message);
+     if (error) console.log(error.message)
 
-  res.send({ status: "OK" });
-});
+     res.send({ status: 'OK' })
+})
 
-export { router as home };
+router.get('/redirect/:name', async (req, res) => {
+     const token = req.cookies.access_token
+     const token_response = await supabase.auth.getUser(token)
+
+     if (token_response.error) console.log(token_response.error.message)
+
+     const uid = token_response.data.user.id
+
+     const name = req.params.name
+     console.log(name)
+
+     const { data, error } = await supabase
+          .from('subject_description')
+          .select()
+          .eq('subject_name', name)
+
+     if (error) res.send(error.message)
+
+     if (data.length == 0) {
+          const { error } = await supabase.from('subject_description').insert({
+               subject_name: name,
+               uid: uid
+          })
+
+          if (error) console.log(error.message)
+     }
+
+     res.redirect(`/${name}/description`)
+})
+
+export { router as home }

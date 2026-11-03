@@ -82,7 +82,7 @@ async function loadContent() {
     const desc = subject.description;
 
     const card = create(`
-          <div class="cells">
+          <div class="cells" onclick="sub_redirect('${title}')">
             <div class="cell_header">
               <input type="checkbox" id="check">
             </div>
@@ -112,6 +112,11 @@ async function fetchInfo() {
   } catch (error) {
     console.log(error.message);
   }
+}
+
+function sub_redirect(title) {
+  console.log(title);
+  window.location.href = `/subject/${title}/description`;
 }
 
 function create(html) {
