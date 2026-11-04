@@ -23,10 +23,11 @@ router.get('/:name/description', async (req, res) => {
 })
 
 router.get('/:name/getDescription', async (req, res) => {
+     const name = req.params.name
      const { data, error } = await supabase
           .from('subject_description')
           .select()
-          .eq('subject_name', 'CPAR')
+          .eq('subject_name', name)
 
      if (error) console.log(error.message)
 
