@@ -141,6 +141,8 @@ async function updateInfo() {
 
 async function fetchInfo() {
      let name = window.location.href.split('/')[4]
+     name.replaceAll('%20', ' ')
+     console.log(name)
 
      try {
           const response = await fetch(`/subject/${name}/getDescription`)
